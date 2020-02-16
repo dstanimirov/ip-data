@@ -16,7 +16,7 @@ https://docs.ipdata.co/
 
 *  As a shared service from json file
  
-1. Create file in json format and save in desired folder
+Create file in json format and save in desired folder
 
 ```
 {
@@ -45,7 +45,7 @@ https://docs.ipdata.co/
 ```
 
 
-2. In your application read the file with Phalcon Json adatper an Load as a shared service
+In your application read the file with Phalcon Json adatper an Load as a shared service
 
 
 ```
@@ -59,8 +59,7 @@ foreach ($sharedServices->path('sharedServices', []) as $shareName => $options) 
 ```
 
 
-
-3. Call anywere in your application ( controllers or plugins )
+Call anywere in your application ( controllers or plugins )
 
 `$ipdata = $this->ipdata->locate('ip-address-to-locate');`
 
