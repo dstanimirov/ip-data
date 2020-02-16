@@ -22,7 +22,7 @@ https://docs.ipdata.co/
 {
         "sharedServices": {
             "ipdata": {
-                "className": "\\Openapi\\Plugins\\IpData",
+                "className": "\\Openapi\\Phalcon\\Plugins\\IpData",
                 "properties": [
                     {
                         "name": "apiKey",
@@ -70,7 +70,7 @@ foreach ($sharedServices->path('sharedServices', []) as $shareName => $options) 
 
 
 ```
-$ipdata = new Openapi\Plugins\IpData();
+$ipdata = new Openapi\Phalcon\Plugins\IpData();
 
 $ipdata->setApiKey('your-api-key');
 

@@ -1,0 +1,28 @@
+{
+    "name": "openapi/phalcon-plugin-ip-data",
+    "type": "library",
+    "description": "Allows lookup the location of any IP address",
+    "keywords": ["Phalcon", "Phalcon plugin", "IP lookup", "ipdata.co"],
+    "license": "MIT",
+    "support": {
+        "email": "stanimirov.dimitar@gmail.com"
+    },
+    "authors": [
+        {
+            "name": "Dimitar Stanimirov",
+            "email": "stanimirov.dimitar@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "phalcon/incubator": "^3.2"
+    },
+    "require-dev": {
+        "phalcon/ide-stubs": "3.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Openapi\\Phalcon\\Plugins\\": "src/"
+        }
+    }
+}
