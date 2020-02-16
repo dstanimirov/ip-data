@@ -6,6 +6,13 @@ use Phalcon\Config;
 use Phalcon\Http\Client\Provider\Curl;
 use Phalcon\Http\Client\Exception AS PhalconException;
 
+/**
+ * 
+ * Phalcon IP data plugin
+ *   
+ * @author Dimitar Stanimirov <stanimirov.dimitar@gmail.com>
+ * 
+ */
 class IpData {
 
     /**
