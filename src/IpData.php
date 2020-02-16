@@ -81,6 +81,31 @@ class IpData {
     private $postal;
 
     /**
+     * @var \Phalcon\Config
+     */
+    private $currency;
+
+    /**
+     * @var string
+     */
+    private $currency_code;
+
+    /**
+     * @var \Phalcon\Config
+     */
+    private $time_zone;
+
+    /**
+     * @var string
+     */
+    private $current_time;
+
+    /**
+     * @var \Phalcon\Config
+     */
+    private $languages;
+
+    /**
      * @var array Error messages
      */
     private $errors = [];
@@ -197,6 +222,53 @@ class IpData {
     }
 
     /**
+     * @return \Phalcon\Config keys[name, code, symbol, native, plural]
+     */
+    public function getCurrency() {
+
+        return !empty($this->currency) ? $this->currency : new Config([]);
+    }
+
+    /**
+     * @return string currency code
+     * @return bool FALSE
+     */
+    public function getCurrencyCode() {
+
+        return $this->currency_code = $this->currency instanceof Config ? $this->currency->path('code', false) : false;
+    }
+
+    /**
+     * @return \Phalcon\Config keys[name, abbr, offset, is_dst, current_time]
+     */
+    public function getTimeZone() {
+
+        return $this->current_time = !empty($this->time_zone) ? $this->time_zone : new Config([]);
+    }
+
+    /**
+     * @return string datetime
+     * @return bool FALSE
+     */
+    public function getCurrentTime() {
+
+        if (!empty($this->current_time)) {
+
+            return $this->current_time;
+        }
+
+        return $this->current_time = $this->time_zone instanceof Config ? $this->time_zone->path('current_time', false) : false;
+    }
+
+    /**
+     * @return \Phalcon\Config
+     */
+    public function getLanguages() {
+
+        return $this->languages = !empty($this->languages) ? $this->languages : new Config([]);
+    }
+
+    /**
      * @param string $ipAddress IP address to lookup. If is not set, client browser IP address will be used
      * 
      * @return \Phalcon\Config 
@@ -204,7 +276,8 @@ class IpData {
     public function locate($ipAddress = '') {
 
         if (empty($this->apiKey) || empty($this->baseUrl)) {
-            return false;
+
+            return new Config([]);
         }
 
         $method = new Curl();
@@ -223,14 +296,14 @@ class IpData {
 
             $this->setError($exc->getMessage());
 
-            return false;
+            return new Config([]);
         }
 
         $decode = json_decode($response->body, true);
 
         if (!is_array($decode)) {
 
-            return false;
+            return new Config([]);
         }
 
         $data = new Config($decode);
@@ -238,8 +311,6 @@ class IpData {
         if (!empty($data->path('message'))) {
 
             $this->setError($data->path('message'));
-
-            return false;
         }
 
         //sets to properties if exists

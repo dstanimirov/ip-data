@@ -73,6 +73,8 @@ $ipdata = new Openapi\Phalcon\Plugins\IpData();
 
 $ipdata->setApiKey('your-api-key');
 
+$ipdata->setBaseUrl('https://api.ipdata.co');
+
 $data = $ipdata->locate('ip-address-to-locate');
 ```
 

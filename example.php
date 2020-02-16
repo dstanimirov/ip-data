@@ -33,3 +33,9 @@ $data->path('city');
 
 //get value from class method
 $ipdata->getCity();
+
+$ipdata->getCurrencyCode();
+
+$ipdata->getCurrentTime();
+
+$ipdata->getLanguages();
