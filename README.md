@@ -11,15 +11,15 @@ link to documentation
 https://docs.ipdata.co/
 
 
-** How to use **
+**How to use**
 
 
 *  As a shared service from json file
  
 1. Create file in json format and save in desired folder
 
-`
-    {
+```
+{
         "sharedServices": {
             "ipdata": {
                 "className": "\\Openapi\\Plugins\\IpData",
@@ -41,40 +41,43 @@ https://docs.ipdata.co/
                 ]
             }
         }
-    }
-`
+}
+```
+
 
 2. In your application read the file with Phalcon Json adatper an Load as a shared service
 
-`
-    $sharedServices = new Phalcon\Config\Adapter\Json('path-to-json-file-with-shared-services');
 
-    foreach ($sharedServices->path('sharedServices', []) as $shareName => $options) {
+```
+$sharedServices = new Phalcon\Config\Adapter\Json('path-to-json-file-with-shared-services');
+
+foreach ($sharedServices->path('sharedServices', []) as $shareName => $options) {
+
+    $di->setShared($shareName, $options->toArray());
     
-        $di->setShared($shareName, $options->toArray());
-        
-    };
+};
+```
 
-`
+
 
 3. Call anywere in your application ( controllers or plugins )
 
-`
-    $ipdata = $this->ipdata->locate('ip-address-to-locate');
+`$ipdata = $this->ipdata->locate('ip-address-to-locate');`
 
-`
+
 
 *  As a instance of class
 
 
-`
-    $ipdata = new Openapi\Plugins\IpData();
+```
+$ipdata = new Openapi\Plugins\IpData();
 
-    $ipdata->setApiKey('your-api-key');
+$ipdata->setApiKey('your-api-key');
 
-    $data = $ipdata->locate('ip-address-to-locate');
+$data = $ipdata->locate('ip-address-to-locate');
+```
 
-`
+
 
 
 
